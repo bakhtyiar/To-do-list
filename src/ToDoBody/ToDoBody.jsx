@@ -1,31 +1,64 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ToDoControls from "./ToDoControls/ToDoControls.jsx";
 import ToDoList from "./ToDoList/ToDoList.jsx";
 
 export default function ToDoBody() {
-	const [list, setList] = useState([
-		{
-			"id": 1,
-			"body": "My first task",
-		},
-	]);
+	const [list, setList] = useState(() => {
+		const saved = localStorage.getItem("ToDoBodyList");
+		const initialValue = JSON.parse(saved);
+		return (
+			initialValue || [
+				{
+					id: 1,
+					body: "My first task",
+					checked: false,
+				},
+			]
+		);
+	});
 
-	const handleClick = (e) => {
-		console.log(`Handling click in ToDoBody`);
-		// console.log(e.target.value);
-		console.log(`LIST:`);
-		console.log(list);
-		setList([...list,
+	useEffect(() => {
+		localStorage.setItem("ToDoBodyList", JSON.stringify(list));
+	}, [list]);
+
+	const addTask = (e) => {
+		setList([
+			...list,
 			{
-				"id": list.length + 1,
-				"body": e,
-			}
+				id: getMaxId(list) + 1,
+				body: e,
+				checked: false,
+			},
 		]);
 	};
+	
+	const removeTask = (id) => {
+		const newList = list.filter((item) => item.id !== id);
+		setList(newList);
+	};
+
+	const checkTask = (id) => {
+		const index = list.findIndex( (item) => item.id === id);
+		const newList = list.slice();
+		newList[index].checked = (newList[index].checked) === true ? false : true;
+		setList(newList);
+	};
+
 	return (
 		<section>
-			<ToDoControls handleClick={handleClick} />
-			<ToDoList list={list} />
+			<ToDoControls addTask={addTask} />
+			<ToDoList list={list} checkTask={checkTask} removeTask={removeTask} />
 		</section>
 	);
+}
+
+
+const getMaxId = (list) => {
+	let ids = [];
+	list.forEach(item => {
+		console.log(`item == ${item.id}`);
+		ids.push(item.id);
+	});
+	console.log(`LIST FIND MAX ${ids}`);
+	return (Math.max(...ids));
 }

@@ -1,0 +1,34 @@
+h6 {
+	margin-top: 8px;
+	margin-bottom: 0px;
+	font-size: medium;
+}
+p {
+	margin-top: 4px;
+}
+.to-do-list-item {
+	min-width: 300px;
+	max-width: 720px;
+	width: fit-content;
+	display: flex;
+	flex-direction: row;
+	align-items: baseline;
+	padding: 16px;
+	margin-top: 16px;
+}
+.to-do-list-item input {
+	margin-right: 8px;
+}
+.to-do-list-item h6 {
+	margin-right: 8px;
+}
+.to-do-list-item p {
+	width: 100%;
+}
+.to-do-list-item__content {
+	color: black;
+}
+.to-do-list-item__content--checked {
+	color: gray;
+	text-decoration: line-through;
+}

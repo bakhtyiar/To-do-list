@@ -1,14 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 export default function ToDoControls(props) {
-	const [inputText, setInputText] = useState("");
+	const [inputText, setInputText] = useState(() => {
+		const saved = localStorage.getItem("ToDoControlsInputText");
+		const initialValue = JSON.parse(saved);
+		return initialValue || "";
+	});
+	useEffect(() => {
+		localStorage.setItem("ToDoControlsInputText", JSON.stringify(inputText));
+	}, [inputText]);
 	const handleChange = (e) => {
 		setInputText(e.target.value);
 	};
-	const handleClick = (e) => {
+	const addTask = (e) => {
 		e.preventDefault();
-		props.handleClick(inputText);
+		props.addTask(inputText);
 		setInputText("");
 	};
 	return (
@@ -22,10 +29,12 @@ export default function ToDoControls(props) {
 					onChange={handleChange}
 				/>
 			</label>
-			<button type="submit" onClick={handleClick}>Add task</button>
+			<button type="submit" onClick={addTask}>
+				Add task
+			</button>
 		</form>
 	);
 }
 ToDoControls.propTypes = {
-	handleClick: PropTypes.func.isRequired,
+	addTask: PropTypes.func.isRequired,
 };
