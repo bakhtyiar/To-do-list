@@ -37,10 +37,10 @@ export default function ToDoBody() {
 		setList(newList);
 	};
 
-	const checkTask = (id) => {
+	const checkTask = (id, nextState) => {
 		const index = list.findIndex( (item) => item.id === id);
 		const newList = list.slice();
-		newList[index].checked = (newList[index].checked) === true ? false : true;
+		newList[index].checked = nextState;
 		setList(newList);
 	};
 

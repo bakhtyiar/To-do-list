@@ -14,6 +14,7 @@ export default function ToDoList(props) {
 					key={item.id}
 					id={item.id}
 					body={item.body}
+					checked={item.checked}
 				/>)
 			})}
 		</ul>

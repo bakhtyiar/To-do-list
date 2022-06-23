@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
 
 export default function ToDoControls(props) {
 	const [inputText, setInputText] = useState(() => {
@@ -19,19 +22,28 @@ export default function ToDoControls(props) {
 		setInputText("");
 	};
 	return (
+		
 		<form>
-			<label>
+			<label htmlFor="to-do-control-filled-search">
 				<h3>Write what you have to do:</h3>
-				<input
-					type="text"
-					placeholder="Do dishes..."
+			</label>
+			<Box sx={{
+			"display": "flex",
+			"alignItems": "stretch"
+			}}>
+				<TextField
+					id="to-do-control-filled-search"
+					label="I will ..."
+					type="search"
+					variant="outlined" 
 					value={inputText}
 					onChange={handleChange}
+					style={{"marginRight": "8px"}}
 				/>
-			</label>
-			<button type="submit" onClick={addTask}>
-				Add task
-			</button>
+				<Button variant="contained" type="submit" onClick={addTask}>
+					Add task
+				</Button>
+			</Box>
 		</form>
 	);
 }
