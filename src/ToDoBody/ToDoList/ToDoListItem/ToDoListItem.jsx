@@ -58,6 +58,7 @@ export default function ToDoListItem(props) {
 				ariaLabel="Delete task" 
 				type="button" 
 				onClick={() => removeTask(props.id)}
+				style={styles["close-button"]}
 			>
 				<CloseIcon sx={{"fontSize": "medium"}}/>
 			</IconButton>
@@ -79,13 +80,12 @@ const styles = {
 		"maxWidth": "720px",
 		"width": "100%",
 		"display": "flex",
-		"flexDirection": "row",
-		"alignItems": "flexStart",
 		"padding": "16px 16px 16px 8px",
 		"marginTop": "16px",
 		"border": "1px solid lightgray",
 		"borderRadius": "8px",
 		"marginRight": "0",
+		"align-items": "flex-start",
 	},
 	"checkbox": {
 		"marginRight": "8px",
@@ -94,6 +94,7 @@ const styles = {
 		"margin": "0",
 		"width": "calc(100% - 74px)",
 		"word-wrap": "break-word",
+		"align-self": "center",
 	},
 	"content": {
 		"color": "black",
