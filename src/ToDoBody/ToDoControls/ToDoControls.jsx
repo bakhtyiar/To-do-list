@@ -27,10 +27,7 @@ export default function ToDoControls(props) {
 			<label htmlFor="to-do-control-filled-search">
 				<h3>Write what you have to do:</h3>
 			</label>
-			<Box sx={{
-			"display": "flex",
-			"alignItems": "stretch"
-			}}>
+			<Box sx={styles["controls"]}>
 				<TextField
 					id="to-do-control-filled-search"
 					label="I will ..."
@@ -38,9 +35,14 @@ export default function ToDoControls(props) {
 					variant="outlined" 
 					value={inputText}
 					onChange={handleChange}
-					style={{"marginRight": "8px"}}
+					style={styles["textfield"]}
 				/>
-				<Button variant="contained" type="submit" onClick={addTask}>
+				<Button 
+					variant="contained" 
+					type="submit" 
+					onClick={addTask}
+					style={styles["button"]}
+				>
 					Add task
 				</Button>
 			</Box>
@@ -50,3 +52,16 @@ export default function ToDoControls(props) {
 ToDoControls.propTypes = {
 	addTask: PropTypes.func.isRequired,
 };
+const styles = {
+	"controls": {
+		"display": "flex",
+		"alignItems": "stretch",
+	},
+	"textfield": {
+		"marginRight": "8px",
+		"width": "100%",
+	},
+	"button": {
+		"minWidth": "fit-content",
+	},
+}
