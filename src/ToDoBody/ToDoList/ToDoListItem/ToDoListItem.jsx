@@ -80,7 +80,7 @@ const styles = {
 		"width": "100%",
 		"display": "flex",
 		"flexDirection": "row",
-		"alignItems": "center",
+		"alignItems": "flexStart",
 		"padding": "16px 16px 16px 8px",
 		"marginTop": "16px",
 		"border": "1px solid lightgray",
@@ -92,7 +92,8 @@ const styles = {
 	},
 	"p": {
 		"margin": "0",
-		"width": "100%",
+		"width": "calc(100% - 74px)",
+		"word-wrap": "break-word",
 	},
 	"content": {
 		"color": "black",
