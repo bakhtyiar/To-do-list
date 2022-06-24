@@ -1,9 +1,8 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-// import "./ToDoListItem.css";
 import Checkbox from '@mui/material/Checkbox';
-import Button from '@mui/material/Button'
-
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 
 export default function ToDoListItem(props) {
 	const [checked, setChecked] = useState(props.checked);
@@ -50,22 +49,18 @@ export default function ToDoListItem(props) {
 				{...checkedProp} 
 				onClick={() => checkTask(props.id)}
 				ariaLabel="Check task"
-				style={styles[".input"]}
+				style={styles["checkbox"]}
 			/>
-			<h6 style={styles["h6"]}>
-				{props.id}
-			</h6>
 			<p style={contentStyles}>
 				{props.body}
 			</p>
-			<Button 
+			<IconButton 
 				ariaLabel="Delete task" 
 				type="button" 
 				onClick={() => removeTask(props.id)}
-				style={styles[""]}
 			>
-				&#10006;
-			</Button>
+				<CloseIcon sx={{"fontSize": "medium"}}/>
+			</IconButton>
 		</li>
 	);
 }
@@ -86,19 +81,14 @@ const styles = {
 		"display": "flex",
 		"flexDirection": "row",
 		"alignItems": "center",
-		"padding": "16px",
+		"padding": "16px 16px 16px 8px",
 		"marginTop": "16px",
 		"border": "1px solid lightgray",
 		"borderRadius": "8px",
 		"marginRight": "0",
 	},
 	"checkbox": {
-		"margin": "0",
-	},
-	"h6": {
-		"margin": "0",
-		"fontSize": "medium",
-		"fontWeight": "400"
+		"marginRight": "8px",
 	},
 	"p": {
 		"margin": "0",
