@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 
 export default function ToDoListItem(props) {
 	const [checked, setChecked] = useState(props.checked);
@@ -45,6 +46,14 @@ export default function ToDoListItem(props) {
 
 	return (
 		<li key={props.id} style={styles["li"]}>
+			<IconButton 
+				ariaLabel="Delete task" 
+				type="button" 
+				onClick={() => removeTask(props.id)}
+				style={styles["drag-button"]}
+			>
+				<DragIndicatorIcon sx={{"fontSize": "medium"}}/>
+			</IconButton>
 			<Checkbox 
 				{...checkedProp} 
 				onClick={() => checkTask(props.id)}
@@ -87,6 +96,9 @@ const styles = {
 		"marginRight": "0",
 		"align-items": "flex-start",
 	},
+	"drag-button": {
+		"marginTop": "4px",
+	},
 	"checkbox": {
 		"marginRight": "8px",
 	},
@@ -98,6 +110,9 @@ const styles = {
 	},
 	"content": {
 		"color": "black",
+	},
+	"close-button": {
+		"marginTop": "4px",
 	},
 	"content--checked": {
 		"color": "lightGray",
