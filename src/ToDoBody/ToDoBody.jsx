@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import ToDoControls from "./ToDoControls/ToDoControls.jsx";
 import ToDoList from "./ToDoList/ToDoList.jsx";
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+
 
 export default function ToDoBody() {
 	const [list, setList] = useState(() => {
@@ -37,17 +39,39 @@ export default function ToDoBody() {
 		setList(newList);
 	};
 
-	const checkTask = (id, nextState) => {
+	const checkTask = (id) => {
 		const index = list.findIndex( (item) => item.id === id);
+		const nextState = list[index]["checked"] === true ? false : true;
 		const newList = list.slice();
-		newList[index].checked = nextState;
+		newList[index]["checked"] = nextState;
 		setList(newList);
 	};
 
+	const dragTask = (result) => {
+		if (!result.destination) return ;
+	
+		const items = Array.from(list);
+		const [reorderedItem] = items.splice(result.source.index, 1);
+		items.splice(result.destination.index, 0, reorderedItem);
+	
+		setList(items);
+	}
+
 	return (
 		<section>
-			<ToDoControls addTask={addTask} />
-			<ToDoList list={list} checkTask={checkTask} removeTask={removeTask} />
+			<ToDoControls addTask={addTask}/>
+			<DragDropContext onDragEnd={dragTask}>
+          		<Droppable droppableId="taskList">
+            	{(provided) => (
+					<ToDoList 
+						list={list} 
+						checkTask={checkTask} 
+						removeTask={removeTask} 
+						providedOut={provided}
+					/>
+				)}
+				</Droppable>
+			</DragDropContext>
 		</section>
 	);
 }
@@ -56,9 +80,7 @@ export default function ToDoBody() {
 const getMaxId = (list) => {
 	let ids = [];
 	list.forEach(item => {
-		console.log(`item == ${item.id}`);
 		ids.push(item.id);
 	});
-	console.log(`LIST FIND MAX ${ids}`);
 	return (Math.max(...ids));
 }

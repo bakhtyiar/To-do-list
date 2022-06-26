@@ -1,73 +1,55 @@
-import { useState } from "react";
 import PropTypes from "prop-types";
 import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
+import "./ToDoListItem.css";
 
 export default function ToDoListItem(props) {
-	const [checked, setChecked] = useState(props.checked);
-	
+	const styles = {
+		"p": {
+			...props.checked === true ? {
+				"color": "lightGray",
+				"textDecoration": "line-through",
+			} : {},
+		},
+	};
+
 	const removeTask = (id) => {
 		props.removeTask(id);
 	};
 
 	const checkTask = (id) => {
-		const nextState = checked === true ? false : true;
-		setChecked(nextState);
-		props.checkTask(id, nextState);
+		props.checkTask(id);
 	};
 	
-	let checkedProp = {};
-	if (props.checked === true) 
-		checkedProp = {
-			"checked": "checked",
-		};
-	else
-		checkedProp = {};
-
-	let contentStyles = {
-		...styles["p"], 
-		...styles["content"]
-	};
-	if (props.checked === true)
-		contentStyles = {
-			...styles["p"], 
-			...styles["content"],
-			...styles["content--checked"],
-		};
-	else 
-		contentStyles = {
-			...styles["p"], 
-			...styles["content"],
-		};
-
-
-
 	return (
-		<li key={props.id} style={styles["li"]}>
-			<IconButton 
-				ariaLabel="Delete task" 
-				type="button" 
-				onClick={() => removeTask(props.id)}
-				style={styles["drag-button"]}
-			>
+		<li 
+			index={props.index}
+			style={styles["li"]}
+			ref={props.providedOut.innerRef} 
+			{...props.providedOut.draggableProps} 
+			{...props.providedOut.dragHandleProps}
+		>
+			<div className="task-item__drag-icon">
 				<DragIndicatorIcon sx={{"fontSize": "medium"}}/>
-			</IconButton>
+			</div>
 			<Checkbox 
-				{...checkedProp} 
+				checked={props.checked}
 				onClick={() => checkTask(props.id)}
-				ariaLabel="Check task"
+				aria-label="Check task"
 				style={styles["checkbox"]}
+				className="task-item__checkbox"
 			/>
-			<p style={contentStyles}>
+			<p style={styles["p"]}>
 				{props.body}
 			</p>
 			<IconButton 
-				ariaLabel="Delete task" 
+				aria-label="Delete task" 
 				type="button" 
 				onClick={() => removeTask(props.id)}
 				style={styles["close-button"]}
+				className="task-item__close-button"
 			>
 				<CloseIcon sx={{"fontSize": "medium"}}/>
 			</IconButton>
@@ -81,41 +63,6 @@ ToDoListItem.propTypes = {
 	checked: PropTypes.bool,
 	removeTask: PropTypes.func,
 	checkTask: PropTypes.func,
+	providedOut: PropTypes.object,
+	index: PropTypes.number,
 };
-
-const styles = {
-	"li": {
-		"minWidth": "300px",
-		"maxWidth": "720px",
-		"width": "100%",
-		"display": "flex",
-		"padding": "16px 16px 16px 8px",
-		"marginTop": "16px",
-		"border": "1px solid lightgray",
-		"borderRadius": "8px",
-		"marginRight": "0",
-		"align-items": "flex-start",
-	},
-	"drag-button": {
-		"marginTop": "4px",
-	},
-	"checkbox": {
-		"marginRight": "8px",
-	},
-	"p": {
-		"margin": "0",
-		"width": "calc(100% - 74px)",
-		"word-wrap": "break-word",
-		"align-self": "center",
-	},
-	"content": {
-		"color": "black",
-	},
-	"close-button": {
-		"marginTop": "4px",
-	},
-	"content--checked": {
-		"color": "lightGray",
-		"text-decoration": "line-through",
-	},
-}

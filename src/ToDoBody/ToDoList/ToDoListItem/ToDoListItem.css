@@ -1,0 +1,40 @@
+li {
+	min-width: 300px;
+	max-width: 720px;
+	width: 100%;
+	display: flex;
+	padding: 16px 16px 16px 8px;
+	margin-top: 16px;
+	border: 1px solid lightgray;
+	border-radius: 8px;
+	margin-right: 0;
+	align-items: flex-start;
+}
+
+p {
+	margin: 4px 0 0 0;
+	width: calc(100% - 108px);
+	word-wrap: break-word;
+	align-self: center;
+}
+
+.task-item p {
+	color: black;
+}
+
+.task-item__drag-icon {
+	margin: 5px 0 0 0;
+	width: 32px;
+	height: 32px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.task-item__checkbox {
+	margin-right: 8px;
+}
+
+.task-item__close-button {
+	margin: 5px 0 0 0;
+}
