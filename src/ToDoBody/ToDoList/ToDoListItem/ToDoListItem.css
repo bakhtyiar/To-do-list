@@ -1,6 +1,4 @@
 .task-item__li {
-	min-width: 300px;
-	max-width: 720px;
 	width: 100%;
 	display: flex;
 	padding: 16px 16px 16px 0;
@@ -30,6 +28,10 @@
 
 .task-item__checkbox {
 	margin-right: 8px;
+}
+
+.task-item__text-field {
+	width: 100%;
 }
 
 .task-item__close-button {

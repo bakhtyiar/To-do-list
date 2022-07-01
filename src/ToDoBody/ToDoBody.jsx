@@ -47,6 +47,13 @@ export default function ToDoBody() {
 		setList(newList);
 	};
 
+	const updateTask = (id, newText) => {
+		const index = list.findIndex( (item) => item.id === id);
+		let newList = list.slice();
+		newList[index]["body"] = newText;
+		setList(newList);
+	}
+
 	const dragTask = (result) => {
 		if (!result.destination) return ;
 	
@@ -58,7 +65,7 @@ export default function ToDoBody() {
 	}
 
 	return (
-		<section>
+		<>
 			<ToDoControls addTask={addTask}/>
 			<DragDropContext onDragEnd={dragTask}>
           		<Droppable droppableId="taskList">
@@ -66,13 +73,14 @@ export default function ToDoBody() {
 					<ToDoList 
 						list={list} 
 						checkTask={checkTask} 
+						updateTask={updateTask}
 						removeTask={removeTask} 
 						providedOut={provided}
 					/>
 				)}
 				</Droppable>
 			</DragDropContext>
-		</section>
+		</>
 	);
 }
 

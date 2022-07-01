@@ -7,6 +7,7 @@ export default function ToDoList(props) {
 		"ul": {
 			"listStyleType": "none",
 			"paddingLeft": "0px",
+			"width": "100%",
 		}
 		
 	}
@@ -26,6 +27,7 @@ export default function ToDoList(props) {
 					{(provided) => (
 						<ToDoListItem
 							checkTask={props.checkTask}
+							updateTask={props.updateTask}
 							removeTask={props.removeTask}
 							id={item.id}
 							index={index}
@@ -46,5 +48,6 @@ ToDoList.propTypes = {
 	list: PropTypes.array,
 	removeTask: PropTypes.func,
 	checkTask: PropTypes.func,
+	updateTask: PropTypes.func,
 	providedOut: PropTypes.object,
 };
