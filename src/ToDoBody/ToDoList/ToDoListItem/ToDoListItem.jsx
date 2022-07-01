@@ -27,11 +27,14 @@ export default function ToDoListItem(props) {
 		<li 
 			index={props.index}
 			style={styles["li"]}
+			className="task-item__li"
 			ref={props.providedOut.innerRef} 
 			{...props.providedOut.draggableProps} 
-			{...props.providedOut.dragHandleProps}
 		>
-			<div className="task-item__drag-icon">
+			<div 
+				className="task-item__drag-icon" 
+				{...props.providedOut.dragHandleProps}
+			>
 				<DragIndicatorIcon sx={{"fontSize": "medium"}}/>
 			</div>
 			<Checkbox 
@@ -41,7 +44,7 @@ export default function ToDoListItem(props) {
 				style={styles["checkbox"]}
 				className="task-item__checkbox"
 			/>
-			<p style={styles["p"]}>
+			<p style={styles["p"]} className="task-item__p">
 				{props.body}
 			</p>
 			<IconButton 

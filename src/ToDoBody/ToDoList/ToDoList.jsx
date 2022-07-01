@@ -5,8 +5,8 @@ import { Draggable } from 'react-beautiful-dnd';
 export default function ToDoList(props) {
 	const styles = {
 		"ul": {
-			"list-style-type": "none",
-			"padding-left": "0px",
+			"listStyleType": "none",
+			"paddingLeft": "0px",
 		}
 		
 	}
