@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
-import Checkbox from '@mui/material/Checkbox';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
-import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
+import Checkbox from "@mui/material/Checkbox";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
 import "./ToDoListItem.css";
-import TextField from '@mui/material/TextField';
+import TextField from "@mui/material/TextField";
 import { useRef, useState, useEffect } from "react";
 
 export default function ToDoListItem(props) {
@@ -14,7 +14,7 @@ export default function ToDoListItem(props) {
 	useEffect(() => {
 		textFieldRef.current.focus();
 	}, [isEditing]);
-	
+
 	const removeTask = (id) => {
 		props.removeTask(id);
 	};
@@ -30,7 +30,7 @@ export default function ToDoListItem(props) {
 	};
 
 	const handleKeyDown = (e) => {
-		if (e.key === 'Enter') {
+		if (e.key === "Enter") {
 			updateTask(e);
 		}
 	};
@@ -44,17 +44,17 @@ export default function ToDoListItem(props) {
 	};
 
 	return (
-		<li 
+		<li
 			index={props.index}
 			className="task-item__li"
-			ref={props.providedOut.innerRef} 
-			{...props.providedOut.draggableProps} 
+			ref={props.providedOut.innerRef}
+			{...props.providedOut.draggableProps}
 		>
-			<div 
-				className="task-item__drag-icon" 
+			<div
+				className="task-item__drag-icon"
 				{...props.providedOut.dragHandleProps}
 			>
-				<DragIndicatorIcon sx={{"fontSize": "medium"}}/>
+				<DragIndicatorIcon sx={{ fontSize: "medium" }} />
 			</div>
 			<Checkbox
 				checked={props.checked}
@@ -64,7 +64,7 @@ export default function ToDoListItem(props) {
 			/>
 			<TextField
 				style={{
-					"display": isEditing ? "block" : "none",
+					display: isEditing ? "block" : "none",
 				}}
 				multiline
 				fullWidth
@@ -75,11 +75,11 @@ export default function ToDoListItem(props) {
 				onBlur={handleBlur}
 				inputRef={textFieldRef}
 			/>
-			<p 
+			<p
 				style={{
-					"textDecoration": props.checked ? "line-through" : "none",
-					"color": props.checked ? "lightGray" : "initial",
-					"display": isEditing ? "none" : "block",
+					textDecoration: props.checked ? "line-through" : "none",
+					color: props.checked ? "lightGray" : "initial",
+					display: isEditing ? "none" : "block",
 				}}
 				className="task-item__p"
 				onClick={startEditing}
@@ -88,13 +88,13 @@ export default function ToDoListItem(props) {
 			>
 				{props.body}
 			</p>
-			<IconButton 
-				aria-label="Delete task" 
-				type="button" 
+			<IconButton
+				aria-label="Delete task"
+				type="button"
 				onClick={() => removeTask(props.id)}
 				className="task-item__close-button"
 			>
-				<CloseIcon sx={{"fontSize": "medium"}}/>
+				<CloseIcon sx={{ fontSize: "medium" }} />
 			</IconButton>
 		</li>
 	);

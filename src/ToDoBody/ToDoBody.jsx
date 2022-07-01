@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import ToDoControls from "./ToDoControls/ToDoControls.jsx";
 import ToDoList from "./ToDoList/ToDoList.jsx";
-import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 export default function ToDoBody() {
 	const [list, setList] = useState(() => {
@@ -33,14 +32,14 @@ export default function ToDoBody() {
 			},
 		]);
 	};
-	
+
 	const removeTask = (id) => {
 		const newList = list.filter((item) => item.id !== id);
 		setList(newList);
 	};
 
 	const checkTask = (id) => {
-		const index = list.findIndex( (item) => item.id === id);
+		const index = list.findIndex((item) => item.id === id);
 		const nextState = list[index]["checked"] === true ? false : true;
 		const newList = list.slice();
 		newList[index]["checked"] = nextState;
@@ -48,47 +47,46 @@ export default function ToDoBody() {
 	};
 
 	const updateTask = (id, newText) => {
-		const index = list.findIndex( (item) => item.id === id);
+		const index = list.findIndex((item) => item.id === id);
 		let newList = list.slice();
 		newList[index]["body"] = newText;
 		setList(newList);
-	}
+	};
 
 	const dragTask = (result) => {
-		if (!result.destination) return ;
-	
+		if (!result.destination) return;
+
 		const items = Array.from(list);
 		const [reorderedItem] = items.splice(result.source.index, 1);
 		items.splice(result.destination.index, 0, reorderedItem);
-	
+
 		setList(items);
-	}
+	};
 
 	return (
 		<>
-			<ToDoControls addTask={addTask}/>
+			<ToDoControls addTask={addTask} />
 			<DragDropContext onDragEnd={dragTask}>
-          		<Droppable droppableId="taskList">
-            	{(provided) => (
-					<ToDoList 
-						list={list} 
-						checkTask={checkTask} 
-						updateTask={updateTask}
-						removeTask={removeTask} 
-						providedOut={provided}
-					/>
-				)}
+				<Droppable droppableId="taskList">
+					{(provided) => (
+						<ToDoList
+							list={list}
+							checkTask={checkTask}
+							updateTask={updateTask}
+							removeTask={removeTask}
+							providedOut={provided}
+						/>
+					)}
 				</Droppable>
 			</DragDropContext>
 		</>
 	);
 }
 
-
 const getMaxId = (list) => {
 	let ids = [];
-	list.forEach(item => {
+	list.forEach((item) => {
 		ids.push(item.id);
 	});
-	return (Math.max(...ids));
-}
+	return Math.max(...ids);
+};

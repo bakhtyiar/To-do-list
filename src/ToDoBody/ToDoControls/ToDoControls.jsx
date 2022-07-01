@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
 
 export default function ToDoControls(props) {
 	const [inputText, setInputText] = useState(() => {
@@ -22,7 +22,6 @@ export default function ToDoControls(props) {
 		setInputText("");
 	};
 	return (
-		
 		<form>
 			<label htmlFor="to-do-control-filled-search">
 				<h3>Write what you have to do:</h3>
@@ -32,14 +31,14 @@ export default function ToDoControls(props) {
 					id="to-do-control-filled-search"
 					label="I will ..."
 					type="search"
-					variant="outlined" 
+					variant="outlined"
 					value={inputText}
 					onChange={handleChange}
 					style={styles["textfield"]}
 				/>
-				<Button 
-					variant="contained" 
-					type="submit" 
+				<Button
+					variant="contained"
+					type="submit"
 					onClick={addTask}
 					style={styles["button"]}
 				>
@@ -53,15 +52,15 @@ ToDoControls.propTypes = {
 	addTask: PropTypes.func.isRequired,
 };
 const styles = {
-	"controls": {
-		"display": "flex",
-		"alignItems": "stretch",
+	controls: {
+		display: "flex",
+		alignItems: "stretch",
 	},
-	"textfield": {
-		"marginRight": "8px",
-		"width": "100%",
+	textfield: {
+		marginRight: "8px",
+		width: "100%",
 	},
-	"button": {
-		"minWidth": "fit-content",
+	button: {
+		minWidth: "fit-content",
 	},
-}
+};

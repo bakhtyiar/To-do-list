@@ -10,5 +10,5 @@ export default function header() {
 }
 
 const styles = {
-	"textAlign": "center"
-}
+	textAlign: "center",
+};
