@@ -22,14 +22,28 @@ export default function ToDoBody() {
 		localStorage.setItem("ToDoBodyList", JSON.stringify(list));
 	}, [list]);
 
-	const addTask = (e) => {
+	const calcCheckedTasksFloatingLineIndex = (list) => {
+		for (let i = list.length - 1; i > 0; i--) {
+			if (list[i]["checked"] === false) {
+				return i + 1;
+			}
+		}
+	};
+
+	const addTask = (text) => {
+		const newList = list.slice();
+		const lineIndex = calcCheckedTasksFloatingLineIndex(newList);
+		const listTail = newList.splice(lineIndex, -(lineIndex - newList.length));
+
+
 		setList([
-			...list,
+			...newList,
 			{
 				id: getMaxId(list) + 1,
-				body: e,
+				body: text,
 				checked: false,
 			},
+			...listTail,
 		]);
 	};
 
@@ -43,6 +57,13 @@ export default function ToDoBody() {
 		const nextState = list[index]["checked"] === true ? false : true;
 		const newList = list.slice();
 		newList[index]["checked"] = nextState;
+		if (nextState === true) {
+			const checkedTask = newList.splice(index, 1);
+			const lineIndex = calcCheckedTasksFloatingLineIndex(newList);
+			const listTail = newList.splice(lineIndex, -(lineIndex - list.length));
+			newList.push(...checkedTask);
+			newList.push(...listTail);
+		}
 		setList(newList);
 	};
 
