@@ -65,7 +65,7 @@ ToDoControls.propTypes = {
 const styles = {
 	controls: {
 		display: "flex",
-		alignItems: "stretch",
+		alignItems: "baseline",
 	},
 	textfield: {
 		marginRight: "8px",
@@ -73,5 +73,6 @@ const styles = {
 	},
 	button: {
 		minWidth: "fit-content",
+		height: "61px",
 	},
 };
