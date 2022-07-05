@@ -10,16 +10,25 @@ export default function ToDoControls(props) {
 		const initialValue = JSON.parse(saved);
 		return initialValue || "";
 	});
+	const [helperText, setHelperText] = useState("");
 	useEffect(() => {
 		localStorage.setItem("ToDoControlsInputText", JSON.stringify(inputText));
 	}, [inputText]);
 	const handleChange = (e) => {
 		setInputText(e.target.value);
+		if (helperText !== "" && inputText !== "") {
+			setHelperText("");
+		}
 	};
 	const addTask = (e) => {
 		e.preventDefault();
-		props.addTask(inputText);
-		setInputText("");
+		if (inputText === "") {
+			setHelperText("Field is empty");
+		} else {
+			setHelperText("");
+			props.addTask(inputText);
+			setInputText("");
+		}
 	};
 	return (
 		<form>
@@ -35,6 +44,8 @@ export default function ToDoControls(props) {
 					value={inputText}
 					onChange={handleChange}
 					style={styles["textfield"]}
+					error={helperText === "" ? false : true}
+					helperText={helperText}
 				/>
 				<Button
 					variant="contained"
