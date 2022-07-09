@@ -14,7 +14,6 @@
 	width: calc(100% - 124px);
 	word-wrap: break-word;
 	align-self: center;
-	color: black;
 	flex-shrink: 1;
 }
 

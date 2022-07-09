@@ -5,9 +5,11 @@ import CloseIcon from "@mui/icons-material/Close";
 import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
 import "./ToDoListItem.css";
 import TextField from "@mui/material/TextField";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useContext } from "react";
+import { ColorModeContext } from "../../../App";
 
 export default function ToDoListItem(props) {
+	const colorMode = useContext(ColorModeContext);
 	const [isEditing, setIsEditing] = useState(false);
 	const textFieldRef = useRef();
 	const pRef = useRef();
@@ -21,6 +23,7 @@ export default function ToDoListItem(props) {
 
 	const checkTask = (id) => {
 		props.checkTask(id);
+		console.log(colorMode);
 	};
 
 	const updateTask = (e) => {
@@ -76,11 +79,19 @@ export default function ToDoListItem(props) {
 				inputRef={textFieldRef}
 			/>
 			<p
-				style={{
-					textDecoration: props.checked ? "line-through" : "none",
-					color: props.checked ? "lightGray" : "initial",
-					display: isEditing ? "none" : "block",
-				}}
+				style={
+					colorMode["theme"] === "light"
+						? {
+								textDecoration: props.checked ? "line-through" : "none",
+								color: props.checked ? "lightGray" : "black",
+								display: isEditing ? "none" : "block",
+							}
+						: {
+								textDecoration: props.checked ? "line-through" : "none",
+								color: props.checked ? "darkGray" : "white",
+								display: isEditing ? "none" : "block",
+							}
+				}
 				className="task-item__p"
 				onClick={startEditing}
 				aria-hidden="true"
