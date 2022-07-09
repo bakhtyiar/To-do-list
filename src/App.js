@@ -9,7 +9,10 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 // import useMediaQuery from "@mui/material/useMediaQuery";
 import { useState, useMemo, createContext } from "react";
 
-export const ColorModeContext = createContext({ toggleColorMode: () => {}, theme: "light"});
+export const ColorModeContext = createContext({
+	toggleColorMode: () => {},
+	theme: "light",
+});
 
 function App() {
 	// const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
@@ -48,7 +51,7 @@ function App() {
 								alignItems: "center",
 							}}
 						>
-							<SettingControls 
+							<SettingControls
 								toggleColorMode={colorMode.toggleColorMode}
 								theme={mode}
 							/>

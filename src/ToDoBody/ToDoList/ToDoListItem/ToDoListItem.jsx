@@ -85,12 +85,12 @@ export default function ToDoListItem(props) {
 								textDecoration: props.checked ? "line-through" : "none",
 								color: props.checked ? "lightGray" : "black",
 								display: isEditing ? "none" : "block",
-							}
+						  }
 						: {
 								textDecoration: props.checked ? "line-through" : "none",
 								color: props.checked ? "darkGray" : "white",
 								display: isEditing ? "none" : "block",
-							}
+						  }
 				}
 				className="task-item__p"
 				onClick={startEditing}

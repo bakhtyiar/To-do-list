@@ -35,7 +35,6 @@ export default function ToDoBody() {
 		const lineIndex = calcCheckedTasksFloatingLineIndex(newList);
 		const listTail = newList.splice(lineIndex, -(lineIndex - newList.length));
 
-
 		setList([
 			...newList,
 			{
