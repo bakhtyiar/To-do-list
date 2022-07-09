@@ -6,7 +6,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-// import useMediaQuery from "@mui/material/useMediaQuery";
 import { useState, useMemo, createContext } from "react";
 
 export const ColorModeContext = createContext({
@@ -15,7 +14,6 @@ export const ColorModeContext = createContext({
 });
 
 function App() {
-	// const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 	const [mode, setMode] = useState("light");
 	const colorMode = useMemo(
 		() => ({
@@ -51,10 +49,17 @@ function App() {
 								alignItems: "center",
 							}}
 						>
-							<SettingControls
-								toggleColorMode={colorMode.toggleColorMode}
-								theme={mode}
-							/>
+							<Box
+								sx={{
+									alignSelf: "end",
+									marginTop: "32px",
+								}}
+							>
+								<SettingControls
+									toggleColorMode={colorMode.toggleColorMode}
+									theme={mode}
+								/>
+							</Box>
 							<Header />
 							<ToDoBody />
 						</Box>

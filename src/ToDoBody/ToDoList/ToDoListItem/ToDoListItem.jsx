@@ -23,7 +23,6 @@ export default function ToDoListItem(props) {
 
 	const checkTask = (id) => {
 		props.checkTask(id);
-		console.log(colorMode);
 	};
 
 	const updateTask = (e) => {

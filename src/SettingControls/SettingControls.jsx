@@ -8,11 +8,13 @@ const SettingControls = (props) => {
 
 	return (
 		<div>
+			Dark
 			<Switch
 				checked={props.theme === "light" ? true : false}
 				onChange={handleChange}
 				inputProps={{ "aria-label": "switch-theme" }}
 			/>
+			Light
 		</div>
 	);
 };
