@@ -1,3 +1,24 @@
+# To-do-list
+## App with CRUD, drag'n'drop, dark\light theme, local cashing
+![preview image](./github_preview.png)
+
+## Used
+- MUI
+- React
+- React-beautiful-DND
+
+## How to try
+1. open cli app
+2. > git clone https://github.com/bakhtyiar/To-do-list.git
+3. > cd To-do-list
+4. > npm i
+5. > npm run start
+6. wait building
+
+Below default create-react-app README
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
