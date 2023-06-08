@@ -15,11 +15,11 @@ App with CRUD, drag'n'drop, dark\light theme, local cashing
 5. `npm run start`
 6. Wait minute for build
 
-Below default create-react-app README
+# Below default create-react-app README
 
 ---
 
-# Getting Started with Create React App
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
